@@ -11,10 +11,13 @@ package fr_ejercicio5;
  */
 public class Principal extends javax.swing.JFrame {
 
+    private int cant;
+
     /**
      * Creates new form Principal
      */
     public Principal() {
+        cant = 0;
         initComponents();
     }
 
@@ -33,9 +36,9 @@ public class Principal extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tf_cantidad = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        tf_total = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,7 +59,7 @@ public class Principal extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Asiento 1", "Asiento 2", "Asiento 3", "Asiento 4"
             }
         ) {
             Class[] types = new Class [] {
@@ -67,26 +70,30 @@ public class Principal extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable1.setTableHeader(null);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel2.setText("Precio Entrada: 6€");
 
         jLabel3.setText("Cantidad:");
 
-        jTextField1.setEditable(false);
-        jTextField1.setText(" ");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        tf_cantidad.setEditable(false);
+        tf_cantidad.setText(" ");
+        tf_cantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                tf_cantidadActionPerformed(evt);
             }
         });
 
         jLabel4.setText("Total:");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        tf_total.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                tf_totalActionPerformed(evt);
             }
         });
 
@@ -113,11 +120,11 @@ public class Principal extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField1))
+                                        .addComponent(tf_cantidad))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addGap(23, 23, 23)
-                                        .addComponent(jTextField2))))
+                                        .addComponent(tf_total))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(42, 42, 42)
                                 .addComponent(jButton1)))))
@@ -140,11 +147,11 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tf_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tf_total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
                         .addComponent(jButton1)))
                 .addContainerGap(16, Short.MAX_VALUE))
@@ -153,13 +160,28 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void tf_cantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_cantidadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_tf_cantidadActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void tf_totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_totalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_tf_totalActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+       // String cantidad="";
+        // TODO add your handling code here:
+        boolean activo;
+        activo = (boolean) jTable1.getModel().getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn());
+        if(activo)
+            cant++;
+        else
+            cant--;
+        
+        tf_cantidad.setText(""+cant);
+        tf_total.setText(cant*6+"");
+        
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -205,7 +227,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField tf_cantidad;
+    private javax.swing.JTextField tf_total;
     // End of variables declaration//GEN-END:variables
 }
