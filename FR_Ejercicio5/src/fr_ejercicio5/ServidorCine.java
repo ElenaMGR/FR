@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,6 +20,9 @@ import java.util.logging.Logger;
  * @author Elena María Gómez Ríos y Jose Luis Martínez Ortíz
  */
 public class ServidorCine {
+    
+    ArrayList<Usuario> usuarios = new ArrayList();
+    ArrayList<SalaCine> salas = new ArrayList();
 
     /**
      * @param args the command line arguments
@@ -71,6 +75,16 @@ public class ServidorCine {
             
             
         } while (true);
+        
+    }
+    
+    /** Inicializa el Cine con las salas y los usuarios.
+     * 
+     */
+    private void InicializarCine(){
+        
+    }
+    private void ConsultarLogin(){
         
     }
     
