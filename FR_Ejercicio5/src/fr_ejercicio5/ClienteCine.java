@@ -87,5 +87,29 @@ public class ClienteCine {
         
         return textoRecibido.equals("OK");
     }
+    
+    public boolean registrar(String user, String pass) {
+        PrintWriter outPrinter;
+        BufferedReader inReader;
+        
+        textoEnvio = user+"#"+pass;
+        try {
+            outPrinter = new PrintWriter(socketServicio.getOutputStream(), true);
+            outPrinter.println("REG");
+            outPrinter.flush();
+            inReader = new BufferedReader(new InputStreamReader(socketServicio.getInputStream()));
+            textoRecibido = inReader.readLine();
+            if (textoRecibido.equals("OKREG")){
+                outPrinter.println(textoEnvio);
+                outPrinter.flush();
+            }
+            
+        } catch (IOException ex) {
+            System.err.println("Error: error al enviar el registro al servidor");
+        }
+
+        
+        return textoRecibido.equals("OKREG");
+    }
 
 }
