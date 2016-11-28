@@ -16,6 +16,8 @@ public class Login_usuario extends javax.swing.JFrame {
      */
     public Login_usuario() {
         initComponents();
+        ClienteCine cliente = new ClienteCine();
+        cliente.conectar();
     }
 
     /**

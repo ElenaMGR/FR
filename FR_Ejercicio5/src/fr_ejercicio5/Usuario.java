@@ -7,15 +7,11 @@ package fr_ejercicio5;
 
 /**
  *
- * @author Elena
+ * @author Elena María Gómez Ríos y Jose Luis Martínez Ortíz
  */
-public class FR_Ejercicio5 {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+public class Usuario {
+    
+    String user;
+    String pass;
     
 }
