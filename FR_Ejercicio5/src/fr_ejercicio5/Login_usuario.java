@@ -7,7 +7,7 @@ package fr_ejercicio5;
 
 /**
  *
- * @author Jose
+ * @author Elena María Gómez Ríos y Jose Luis Martínez Ortíz 
  */
 public class Login_usuario extends javax.swing.JFrame {
 
