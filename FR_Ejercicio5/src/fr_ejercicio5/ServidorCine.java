@@ -22,14 +22,17 @@ import java.util.logging.Logger;
 public class ServidorCine {
     
     // Usuarios y salas de nuestro cine
-    ArrayList<Usuario> usuarios = new ArrayList();
-    ArrayList<SalaCine> salas = new ArrayList();
+    static ArrayList<Usuario> usuarios = new ArrayList();
+    static ArrayList<SalaCine> salas = new ArrayList();
     
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        boolean loginSuccessful=false;
+        
+        InicializarCine();
         //Puerto al que conectarse
         int port = 8989;
         String textoRecibido="";
@@ -66,6 +69,13 @@ public class ServidorCine {
                 Logger.getLogger(ServidorCine.class.getName()).log(Level.SEVERE, null, ex);
             }
             System.out.println(textoRecibido);
+            if (ConsultarLogin(textoRecibido)){
+                textoRecibido = "OK";
+                loginSuccessful=true;
+            }else{
+                textoRecibido = "ERROR";
+            }
+            
             PrintWriter outPrinter;
             try {
                 outPrinter = new PrintWriter(socketServicio.getOutputStream(),true);
@@ -74,6 +84,9 @@ public class ServidorCine {
                 Logger.getLogger(ServidorCine.class.getName()).log(Level.SEVERE, null, ex);
             }
             
+            if (loginSuccessful){
+                
+            }
             
         } while (true);
         
@@ -83,7 +96,7 @@ public class ServidorCine {
      * Inicializa el Cine con las salas y los usuarios.
      * 
      */
-    private void InicializarCine(){
+    private static void InicializarCine(){
         // Creación de los usuarios
         usuarios.add(new Usuario("Elena","elena"));
         usuarios.add(new Usuario("Jose","jose"));
@@ -105,10 +118,12 @@ public class ServidorCine {
      * @param contraseña contraseña del usuario
      * @return true si el usuario existe, false en caso contrario
      */
-    private boolean ConsultarLogin(String user, String pass){
+    private static boolean ConsultarLogin(String login){
         boolean encontrado = false;
+        String user = login.split("#")[0];
+        String pass = login.split("#")[1];
         for (Usuario usuario : usuarios) {
-            if(user==usuario.getUser() && pass==usuario.getPass())
+            if(user.equals(usuario.getUser()) && pass.equals(usuario.getPass()))
                 encontrado=true;
         }
         return encontrado;
