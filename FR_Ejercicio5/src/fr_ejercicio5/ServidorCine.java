@@ -25,10 +25,6 @@ public class ServidorCine {
     ArrayList<Usuario> usuarios = new ArrayList();
     ArrayList<SalaCine> salas = new ArrayList();
     
-    public ServidorCine(){
-        InicializarCine();
-    }
-    
 
     /**
      * @param args the command line arguments
@@ -102,8 +98,20 @@ public class ServidorCine {
         salas.add(new SalaCine(4,"Un monstruo viene a verme"));
         salas.add(new SalaCine(5,"Doctor Strange"));
     }
-    private void ConsultarLogin(){
-        
+    
+    /**
+     * Método que comprueba que un usuario exista
+     * @param usuario nombre de usuario
+     * @param contraseña contraseña del usuario
+     * @return true si el usuario existe, false en caso contrario
+     */
+    private boolean ConsultarLogin(String user, String pass){
+        boolean encontrado = false;
+        for (Usuario usuario : usuarios) {
+            if(user==usuario.getUser() && pass==usuario.getPass())
+                encontrado=true;
+        }
+        return encontrado;
     }
     
 }
