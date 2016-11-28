@@ -79,7 +79,7 @@ public class ServidorCine {
             PrintWriter outPrinter;
             try {
                 outPrinter = new PrintWriter(socketServicio.getOutputStream(),true);
-                outPrinter.println("Servidor: "+textoRecibido);
+                outPrinter.println(textoRecibido);
             } catch (IOException ex) {
                 Logger.getLogger(ServidorCine.class.getName()).log(Level.SEVERE, null, ex);
             }
