@@ -45,12 +45,21 @@ public class ClienteCine {
     }
 
     public void desconectar() {
+        PrintWriter outPrinter;
+        textoEnvio = "BYE";
+        try {
+            outPrinter = new PrintWriter(socketServicio.getOutputStream(), true);
+            outPrinter.println(textoEnvio);
+            outPrinter.flush();
+        } catch (IOException ex) {
+            System.err.println("Error: error al enviar el mensaje bye al servidor");
+        }
         try {
             // Una vez terminado el servicio, cerramos el socket (automáticamente se cierran
             // el inpuStream  y el outputStream)
             socketServicio.close();
         } catch (IOException ex) {
-            Logger.getLogger(ClienteCine.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Error: error al desconectar el cliente");
         }
     }
 
@@ -62,7 +71,7 @@ public class ClienteCine {
             outPrinter.println(textoEnvio);
             outPrinter.flush();
         } catch (IOException ex) {
-            Logger.getLogger(ClienteCine.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Error: error al enviar el login al servidor");
         }
 
         BufferedReader inReader;
@@ -70,7 +79,7 @@ public class ClienteCine {
             inReader = new BufferedReader(new InputStreamReader(socketServicio.getInputStream()));
             textoRecibido = inReader.readLine();
         } catch (IOException ex) {
-            Logger.getLogger(ClienteCine.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Error: error al recibir respuesta del login del servidor");
         }
         // MOstremos la cadena de caracteres recibidos:
         System.out.println("Recibido: ");

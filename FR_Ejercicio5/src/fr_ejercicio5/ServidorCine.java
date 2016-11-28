@@ -57,11 +57,7 @@ public class ServidorCine {
                 System.out.println("Error: no se pudo aceptar la conexión solicitada");
             }
             
-            // Creamos un objeto de la clase ProcesadorYodafy, pasándole como
-            // argumento el nuevo socket, para que realice el procesamiento
-            // Este esquema permite que se puedan usar hebras más fácilmente.
-            //ProcesadorYodafy procesador = new ProcesadorYodafy(socketServicio);
-             // Enviamos la traducción de Yoda:
+            
             try {
                 BufferedReader inReader = new BufferedReader(new InputStreamReader(socketServicio.getInputStream()));
                 textoRecibido = inReader.readLine();
@@ -69,23 +65,25 @@ public class ServidorCine {
                 Logger.getLogger(ServidorCine.class.getName()).log(Level.SEVERE, null, ex);
             }
             System.out.println(textoRecibido);
-            if (ConsultarLogin(textoRecibido)){
-                textoRecibido = "OK";
-                loginSuccessful=true;
-            }else{
-                textoRecibido = "ERROR";
-            }
-            
-            PrintWriter outPrinter;
-            try {
-                outPrinter = new PrintWriter(socketServicio.getOutputStream(),true);
-                outPrinter.println(textoRecibido);
-            } catch (IOException ex) {
-                Logger.getLogger(ServidorCine.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            if (loginSuccessful){
-                
+            if (!textoRecibido.equals("BYE")){
+                if (ConsultarLogin(textoRecibido)){
+                    textoRecibido = "OK";
+                    loginSuccessful=true;
+                }else {
+                    textoRecibido = "ERROR";
+                }
+
+                PrintWriter outPrinter;
+                try {
+                    outPrinter = new PrintWriter(socketServicio.getOutputStream(),true);
+                    outPrinter.println(textoRecibido);
+                } catch (IOException ex) {
+                    Logger.getLogger(ServidorCine.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                if (loginSuccessful){
+
+                }
             }
             
         } while (true);
@@ -127,6 +125,10 @@ public class ServidorCine {
                 encontrado=true;
         }
         return encontrado;
+    }
+    
+    private static void ProcesarLogin(){
+        
     }
     
 }
