@@ -16,20 +16,25 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Clase ServidorCine
  * @author Elena María Gómez Ríos y Jose Luis Martínez Ortíz
  */
 public class ServidorCine {
     
+    // Usuarios y salas de nuestro cine
     ArrayList<Usuario> usuarios = new ArrayList();
     ArrayList<SalaCine> salas = new ArrayList();
+    
+    public ServidorCine(){
+        InicializarCine();
+    }
+    
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        
+        //Puerto al que conectarse
         int port = 8989;
         String textoRecibido="";
         // Abrimos el socket en modo pasivo, escuchando el en puerto indicado por "port"        
@@ -39,8 +44,8 @@ public class ServidorCine {
         } catch (IOException e) {
             System.out.println("Error: no se pudo atender en el puerto " + port);
         }
-        // Mientras ... siempre!
         
+        // Mientras ... siempre!
         Socket socketServicio = null;
         do {
             
@@ -78,11 +83,24 @@ public class ServidorCine {
         
     }
     
-    /** Inicializa el Cine con las salas y los usuarios.
+    /** 
+     * Inicializa el Cine con las salas y los usuarios.
      * 
      */
     private void InicializarCine(){
+        // Creación de los usuarios
+        usuarios.add(new Usuario("Elena","elena"));
+        usuarios.add(new Usuario("Jose","jose"));
+        usuarios.add(new Usuario("Usuario1","usuario1"));
+        usuarios.add(new Usuario("Usuario2","usuario2"));
+        usuarios.add(new Usuario("Usuario3","usuario3"));
         
+        //Creación de las salas
+        salas.add(new SalaCine(1,"Aliados"));
+        salas.add(new SalaCine(2,"Animales fantásticos"));
+        salas.add(new SalaCine(3,"La llegada"));
+        salas.add(new SalaCine(4,"Un monstruo viene a verme"));
+        salas.add(new SalaCine(5,"Doctor Strange"));
     }
     private void ConsultarLogin(){
         
