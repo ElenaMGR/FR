@@ -108,6 +108,7 @@ public class ServidorCine {
                     } catch (IOException ex) {
                         Logger.getLogger(ServidorCine.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    System.out.println(textoRecibido);
                     try {
                         inReader = new BufferedReader(new InputStreamReader(socketServicio.getInputStream()));
                         textoRecibido = inReader.readLine();
@@ -115,7 +116,7 @@ public class ServidorCine {
                         Logger.getLogger(ServidorCine.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     System.out.println(textoRecibido);
-                    actualizarSala(textoRecibido);
+                   // actualizarSala(textoRecibido);
 
                 }
             }
@@ -178,7 +179,7 @@ public class ServidorCine {
     private static String getButacasOcupadas() {
         String texto = "";
         for (int i = 0; i < salas.size(); i++) {
-            texto += salas.get(i).getNumero() + ":";
+            texto += "Sala "+salas.get(i).getNumero()+" - "+salas.get(i).getPelicula() + ":";
             for (int j = 0; j < 20; j++) {
                 if (salas.get(i).getButaca(j)) {
                     texto += j + ":";

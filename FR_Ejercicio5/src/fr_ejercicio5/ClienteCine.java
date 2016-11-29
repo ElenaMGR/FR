@@ -117,9 +117,10 @@ public class ClienteCine {
         
         try {
             inReader = new BufferedReader(new InputStreamReader(socketServicio.getInputStream()));
-            textoRecibido = inReader.readLine();            
+            textoRecibido = inReader.readLine();  
+            System.out.println(textoRecibido);
         } catch (IOException ex) {
-            System.err.println("Error: error al enviar el registro al servidor");
+            System.err.println("Error: error al cargar las butacas");
         }
         
         return textoRecibido;
