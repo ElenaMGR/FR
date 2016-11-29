@@ -352,44 +352,104 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cb1">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cb1MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cb0">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cb0MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cb2">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cb2MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cb3">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cb3MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cb4">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cb4MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cb5">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cb5MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cb6">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cb6MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cb7">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cb7MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cb8">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cb8MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cb9">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cb9MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cb10">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cb10MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cb11">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cb11MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cb15">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cb15MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cb16">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cb16MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cb12">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cb12MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cb17">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cb17MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cb13">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cb13MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cb18">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cb18MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cb14">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cb14MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cb19">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cb19MouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

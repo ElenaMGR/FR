@@ -97,7 +97,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     public void actualizarSalas(int numsala) {
-              
+
         for (int j = 0; j < sala1.size() && numsala == 0; j++) {
             asientos.get(j).setSelected(sala1.get(j));
             asientos.get(j).setEnabled(!sala1.get(j));
@@ -119,6 +119,17 @@ public class Principal extends javax.swing.JFrame {
             asientos.get(j).setEnabled(!sala5.get(j));
         }
 
+    }
+
+    private void actualizarCantidad(int n) {
+        if (asientos.get(n).isSelected()) {
+            cant++;
+        } else {
+            cant--;
+        }
+
+        tf_cantidad.setText(cant + "");
+        tf_total.setText(cant * 6 + "");
     }
 
     /**
@@ -227,6 +238,126 @@ public class Principal extends javax.swing.JFrame {
         jLabel12.setText("Fila 3");
 
         jLabel13.setText("Fila 4");
+
+        cb1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb1MouseClicked(evt);
+            }
+        });
+
+        cb0.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb0MouseClicked(evt);
+            }
+        });
+
+        cb2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb2MouseClicked(evt);
+            }
+        });
+
+        cb3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb3MouseClicked(evt);
+            }
+        });
+
+        cb4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb4MouseClicked(evt);
+            }
+        });
+
+        cb5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb5MouseClicked(evt);
+            }
+        });
+
+        cb6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb6MouseClicked(evt);
+            }
+        });
+
+        cb7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb7MouseClicked(evt);
+            }
+        });
+
+        cb8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb8MouseClicked(evt);
+            }
+        });
+
+        cb9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb9MouseClicked(evt);
+            }
+        });
+
+        cb10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb10MouseClicked(evt);
+            }
+        });
+
+        cb11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb11MouseClicked(evt);
+            }
+        });
+
+        cb15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb15MouseClicked(evt);
+            }
+        });
+
+        cb16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb16MouseClicked(evt);
+            }
+        });
+
+        cb12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb12MouseClicked(evt);
+            }
+        });
+
+        cb17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb17MouseClicked(evt);
+            }
+        });
+
+        cb13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb13MouseClicked(evt);
+            }
+        });
+
+        cb18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb18MouseClicked(evt);
+            }
+        });
+
+        cb14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb14MouseClicked(evt);
+            }
+        });
+
+        cb19.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb19MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -416,8 +547,91 @@ public class Principal extends javax.swing.JFrame {
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
 
         actualizarSalas(jComboBox1.getSelectedIndex());
+        cant = 0;
+        tf_cantidad.setText("");
+        tf_total.setText("");
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
+    private void cb0MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb0MouseClicked
+        actualizarCantidad(0);
+    }//GEN-LAST:event_cb0MouseClicked
+
+    private void cb1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb1MouseClicked
+        actualizarCantidad(1);
+    }//GEN-LAST:event_cb1MouseClicked
+
+    private void cb2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb2MouseClicked
+        actualizarCantidad(2);
+    }//GEN-LAST:event_cb2MouseClicked
+
+    private void cb3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb3MouseClicked
+        actualizarCantidad(3);
+    }//GEN-LAST:event_cb3MouseClicked
+
+    private void cb4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb4MouseClicked
+        actualizarCantidad(4);
+    }//GEN-LAST:event_cb4MouseClicked
+
+    private void cb5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb5MouseClicked
+        actualizarCantidad(5);
+    }//GEN-LAST:event_cb5MouseClicked
+
+    private void cb6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb6MouseClicked
+       actualizarCantidad(6);
+    }//GEN-LAST:event_cb6MouseClicked
+
+    private void cb7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb7MouseClicked
+       actualizarCantidad(7);
+    }//GEN-LAST:event_cb7MouseClicked
+
+    private void cb8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb8MouseClicked
+        actualizarCantidad(8);
+    }//GEN-LAST:event_cb8MouseClicked
+
+    private void cb9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb9MouseClicked
+       actualizarCantidad(9);
+    }//GEN-LAST:event_cb9MouseClicked
+
+    private void cb10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb10MouseClicked
+        actualizarCantidad(10);
+    }//GEN-LAST:event_cb10MouseClicked
+
+    private void cb11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb11MouseClicked
+        actualizarCantidad(11);
+    }//GEN-LAST:event_cb11MouseClicked
+
+    private void cb12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb12MouseClicked
+       actualizarCantidad(12);
+    }//GEN-LAST:event_cb12MouseClicked
+
+    private void cb13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb13MouseClicked
+       actualizarCantidad(13);
+    }//GEN-LAST:event_cb13MouseClicked
+
+    private void cb14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb14MouseClicked
+      actualizarCantidad(14);
+    }//GEN-LAST:event_cb14MouseClicked
+
+    private void cb15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb15MouseClicked
+       actualizarCantidad(15);
+    }//GEN-LAST:event_cb15MouseClicked
+
+    private void cb16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb16MouseClicked
+       actualizarCantidad(16);
+    }//GEN-LAST:event_cb16MouseClicked
+
+    private void cb17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb17MouseClicked
+        actualizarCantidad(17);
+    }//GEN-LAST:event_cb17MouseClicked
+
+    private void cb18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb18MouseClicked
+       actualizarCantidad(18);
+    }//GEN-LAST:event_cb18MouseClicked
+
+    private void cb19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb19MouseClicked
+       actualizarCantidad(19);
+    }//GEN-LAST:event_cb19MouseClicked
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox cb0;
