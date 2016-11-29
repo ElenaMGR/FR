@@ -149,9 +149,9 @@ public class ServidorCine {
         // Creación de los usuarios
         usuarios.add(new Usuario("Elena", "elena"));
         usuarios.add(new Usuario("Jose", "jose"));
+        usuarios.add(new Usuario("Marta", "marta"));
         usuarios.add(new Usuario("Usuario1", "usuario1"));
         usuarios.add(new Usuario("Usuario2", "usuario2"));
-        usuarios.add(new Usuario("Usuario3", "usuario3"));
 
         //Creación de las salas
         salas.add(new SalaCine(1, "Aliados"));
