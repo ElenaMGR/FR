@@ -122,8 +122,26 @@ public class ClienteCine {
         } catch (IOException ex) {
             System.err.println("Error: error al cargar las butacas");
         }
-        System.out.println("CB "+textoRecibido);
+        System.out.println(textoRecibido);
         return textoRecibido;
+    }
+    
+    public boolean realizarComprar(String compra){
+        PrintWriter outPrinter;
+        BufferedReader inReader;
+        
+        try {
+            outPrinter = new PrintWriter(socketServicio.getOutputStream(), true);
+            outPrinter.println(compra);
+            outPrinter.flush();
+            inReader = new BufferedReader(new InputStreamReader(socketServicio.getInputStream()));
+            textoRecibido = inReader.readLine();
+            
+        } catch (IOException ex) {
+            System.err.println("Error: error al enviar la compra al servidor");
+        }
+   
+        return textoRecibido.equals("OKCOMP");
     }
 
 }

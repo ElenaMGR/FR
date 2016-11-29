@@ -66,6 +66,11 @@ public class Principal extends javax.swing.JFrame {
         asientos.add(cb19);
 
         cargarSalas();
+        
+        actualizarSalas(jComboBox1.getSelectedIndex());
+        cant = 0;
+        tf_cantidad.setText("");
+        tf_total.setText("");
 
     }
 
@@ -133,8 +138,22 @@ public class Principal extends javax.swing.JFrame {
         tf_total.setText(cant * 6 + "");
     }
     
-    private void mandarCompraButacas (){
+    private boolean mandarCompraButacas (){
+        String compra="";
+        // Comprobamos la sala actual
+        compra+=jComboBox1.getSelectedIndex()+":";
         
+        for (int i = 0; i< asientos.size(); i++){
+            // Comprobamos que checkBox estan habilitados
+            if (asientos.get(i).isEnabled()){
+                // Comprobamos cuales estan seleccionados
+                if (asientos.get(i).isSelected()){
+                    // Guardamos los datos en un string (Sala x : <butacas ocupadas>)
+                    compra+=i+":";
+                }          
+            }
+        }      
+        return cliente.realizarComprar(compra);
     }
 
     /**
@@ -653,8 +672,11 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        mandarCompraButacas();
-        JOptionPane.showMessageDialog(this,"Su compra se ha realizado con éxito.");
+        String msg = "Su compra no se ha podido realizar, pruebe más tarde.";
+        if (mandarCompraButacas()){
+            msg = "Su compra se ha realizado con éxito.";
+        }
+        JOptionPane.showMessageDialog(this,msg);
         cliente.desconectar();
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed

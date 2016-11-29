@@ -12,8 +12,6 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Clase ServidorCine
@@ -58,7 +56,8 @@ public class ServidorCine {
             } catch (IOException e) {
                 System.out.println("Error: no se pudo aceptar la conexión solicitada");
             }
-
+            loginSuccessful = false;
+            // Espera mensaje del cliente (login, reg, salir)
             try {
                 inReader = new BufferedReader(new InputStreamReader(socketServicio.getInputStream()));
                 textoRecibido = inReader.readLine();
@@ -69,6 +68,7 @@ public class ServidorCine {
             if (!textoRecibido.equals("BYE")) {
                 if (textoRecibido.equals("REG")) {
 
+                    // Realizar registro
                     try {
                         outPrinter = new PrintWriter(socketServicio.getOutputStream(), true);
                         outPrinter.println("OKREG");
@@ -83,9 +83,10 @@ public class ServidorCine {
                         System.err.println("Error: en el servidor al recibir el nuevo usuario");
                     }
                     System.out.println(textoRecibido);
-
+                    //Crea nuevo usuario
                     usuarios.add(new Usuario(textoRecibido.split("#")[0], textoRecibido.split("#")[1]));
 
+                    // Login
                 } else if (ConsultarLogin(textoRecibido)) {
                     textoRecibido = "OK";
                     loginSuccessful = true;
@@ -93,6 +94,7 @@ public class ServidorCine {
                     textoRecibido = "ERROR";
                 }
 
+                // Envia el resultado del login
                 try {
                     outPrinter = new PrintWriter(socketServicio.getOutputStream(), true);
                     outPrinter.println(textoRecibido);
@@ -100,7 +102,9 @@ public class ServidorCine {
                     System.err.println("Error: en el servidor al enviar el estado del login");
                 }
 
+                //Si el usuario se ha logeado con éxito
                 if (loginSuccessful) {
+                    //Enviamos las butacas ocupadas
                     textoRecibido = getButacasOcupadas();
                     try {
                         outPrinter = new PrintWriter(socketServicio.getOutputStream(), true);
@@ -109,7 +113,8 @@ public class ServidorCine {
                         System.err.println("Error: en el servidor al mandar la información del cine");
                     }
                     System.out.println(textoRecibido);
-                    
+
+                    //El cliente realiza la compra
                     try {
                         inReader = new BufferedReader(new InputStreamReader(socketServicio.getInputStream()));
                         textoRecibido = inReader.readLine();
@@ -117,12 +122,21 @@ public class ServidorCine {
                         System.err.println("Error: en el servidor al recibir la compra de butacas");
                     }
                     System.out.println(textoRecibido);
-                    if (!textoRecibido.equals("BYE")) 
+
+                    if (!textoRecibido.equals("BYE")) {
                         actualizarSala(textoRecibido);
+
+                        try {
+                            outPrinter = new PrintWriter(socketServicio.getOutputStream(), true);
+                            outPrinter.println("OKCOMP");
+                        } catch (IOException ex) {
+                            System.err.println("Error: en el servidor al mandar la confirmación de la compra");
+                        }
+                    }
 
                 }
             }
-
+            textoRecibido = "";
         } while (true);
 
     }
@@ -170,10 +184,10 @@ public class ServidorCine {
     }
 
     private static void actualizarSala(String info) {
-        String[] texto = info.split("#");
+        String[] texto = info.split(":");
         int n = Integer.valueOf(texto[0]);
         for (int i = 1; i < texto.length; i++) {
-            salas.get(n).setButaca(Integer.valueOf(texto[i]), false);
+            salas.get(n).setButaca(Integer.valueOf(texto[i]), true);
         }
 
     }
@@ -181,13 +195,13 @@ public class ServidorCine {
     private static String getButacasOcupadas() {
         String texto = "";
         for (int i = 0; i < salas.size(); i++) {
-            texto += "Sala "+salas.get(i).getNumero()+" - "+salas.get(i).getPelicula() + ":";
+            texto += "Sala " + salas.get(i).getNumero() + " - " + salas.get(i).getPelicula() + ":";
             for (int j = 0; j < 20; j++) {
                 if (salas.get(i).getButaca(j)) {
                     texto += j + ":";
                 }
             }
-            texto+="#";
+            texto += "#";
         }
 
         return texto;
