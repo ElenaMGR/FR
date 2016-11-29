@@ -34,11 +34,11 @@ public class Login_usuario extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         tfUser = new javax.swing.JTextField();
-        tfPass = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         lMensaje = new javax.swing.JLabel();
+        tfPass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -223,7 +223,7 @@ public class Login_usuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lMensaje;
-    private javax.swing.JTextField tfPass;
+    private javax.swing.JPasswordField tfPass;
     private javax.swing.JTextField tfUser;
     // End of variables declaration//GEN-END:variables
 }

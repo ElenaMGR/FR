@@ -114,8 +114,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfUserActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfPass">
-    </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Login"/>
@@ -146,6 +144,8 @@
           <Color blue="0" green="0" red="ff" type="rgb"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="tfPass">
     </Component>
   </SubComponents>
 </Form>
