@@ -63,7 +63,7 @@ public class ServidorCine {
                 inReader = new BufferedReader(new InputStreamReader(socketServicio.getInputStream()));
                 textoRecibido = inReader.readLine();
             } catch (IOException ex) {
-                Logger.getLogger(ServidorCine.class.getName()).log(Level.SEVERE, null, ex);
+                System.err.println("Error: en el servidor al recibir el primer mensaje.");
             }
             System.out.println(textoRecibido);
             if (!textoRecibido.equals("BYE")) {
@@ -73,14 +73,14 @@ public class ServidorCine {
                         outPrinter = new PrintWriter(socketServicio.getOutputStream(), true);
                         outPrinter.println("OKREG");
                     } catch (IOException ex) {
-                        Logger.getLogger(ServidorCine.class.getName()).log(Level.SEVERE, null, ex);
+                        System.err.println("Error: en el servidor al enviar OKREG");
                     }
 
                     try {
                         inReader = new BufferedReader(new InputStreamReader(socketServicio.getInputStream()));
                         textoRecibido = inReader.readLine();
                     } catch (IOException ex) {
-                        Logger.getLogger(ServidorCine.class.getName()).log(Level.SEVERE, null, ex);
+                        System.err.println("Error: en el servidor al recibir el nuevo usuario");
                     }
                     System.out.println(textoRecibido);
 
@@ -97,7 +97,7 @@ public class ServidorCine {
                     outPrinter = new PrintWriter(socketServicio.getOutputStream(), true);
                     outPrinter.println(textoRecibido);
                 } catch (IOException ex) {
-                    Logger.getLogger(ServidorCine.class.getName()).log(Level.SEVERE, null, ex);
+                    System.err.println("Error: en el servidor al enviar el estado del login");
                 }
 
                 if (loginSuccessful) {
@@ -106,14 +106,14 @@ public class ServidorCine {
                         outPrinter = new PrintWriter(socketServicio.getOutputStream(), true);
                         outPrinter.println(textoRecibido);
                     } catch (IOException ex) {
-                        Logger.getLogger(ServidorCine.class.getName()).log(Level.SEVERE, null, ex);
+                        System.err.println("Error: en el servidor al mandar la información del cine");
                     }
                     System.out.println(textoRecibido);
                     try {
                         inReader = new BufferedReader(new InputStreamReader(socketServicio.getInputStream()));
                         textoRecibido = inReader.readLine();
                     } catch (IOException ex) {
-                        Logger.getLogger(ServidorCine.class.getName()).log(Level.SEVERE, null, ex);
+                        System.err.println("Error: en el servidor al recibir la compra de butacas");
                     }
                     System.out.println(textoRecibido);
                     actualizarSala(textoRecibido);

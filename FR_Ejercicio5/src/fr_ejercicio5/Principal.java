@@ -5,30 +5,120 @@
  */
 package fr_ejercicio5;
 
+import java.util.ArrayList;
+import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Elena María Gómez Ríos y Jose Luis Martínez Ortíz 
+ * @author Elena María Gómez Ríos y Jose Luis Martínez Ortíz
  */
 public class Principal extends javax.swing.JFrame {
 
     private int cant;
     private ClienteCine cliente;
+    ArrayList<JCheckBox> asientos;
+    ArrayList<Boolean> sala1, sala2, sala3, sala4, sala5;
 
     /**
      * Creates new form Principal
      */
     public Principal(ClienteCine cliente) {
-        cliente=cliente;
+        this.cliente = cliente;
         cant = 0;
         initComponents();
-          
-        
+        sala1 = new ArrayList();
+        sala2 = new ArrayList();
+        sala3 = new ArrayList();
+        sala4 = new ArrayList();
+        sala5 = new ArrayList();
+
+        for (int i = 0; i < 20; i++) {
+            sala1.add(false);
+            sala2.add(false);
+            sala3.add(false);
+            sala4.add(false);
+            sala5.add(false);
+        }
+
+        asientos = new ArrayList();
+        asientos.add(cb0);
+        asientos.add(cb1);
+        asientos.add(cb2);
+        asientos.add(cb3);
+        asientos.add(cb4);
+        asientos.add(cb5);
+        asientos.add(cb6);
+        asientos.add(cb7);
+        asientos.add(cb8);
+        asientos.add(cb9);
+        asientos.add(cb10);
+        asientos.add(cb11);
+        asientos.add(cb12);
+        asientos.add(cb13);
+        asientos.add(cb14);
+        asientos.add(cb15);
+        asientos.add(cb16);
+        asientos.add(cb17);
+        asientos.add(cb18);
+        asientos.add(cb19);
+
         cargarSalas();
-        
-        
+
+    }
+
+    void cargarSalas() {
+        String butacas = cliente.CargarButacas();
+        System.out.println(butacas);
+        String[] salas = butacas.split("#");
+        String[] butaca;
+
+        for (int i = 0; i < salas.length; i++) {
+            butaca = salas[i].split(":");
+            jComboBox1.addItem(butaca[0]);
+            for (int j = 1; j < butaca.length && i == 0; j++) {
+                sala1.set(Integer.valueOf(butaca[j]), true);
+            }
+            for (int j = 1; j < butaca.length && i == 1; j++) {
+                sala2.set(Integer.valueOf(butaca[j]), true);
+            }
+            for (int j = 1; j < butaca.length && i == 2; j++) {
+                sala3.set(Integer.valueOf(butaca[j]), true);
+            }
+            for (int j = 1; j < butaca.length && i == 3; j++) {
+                sala4.set(Integer.valueOf(butaca[j]), true);
+            }
+            for (int j = 1; j < butaca.length && i == 4; j++) {
+                sala5.set(Integer.valueOf(butaca[j]), true);
+            }
+        }
+
+    }
+
+    public void actualizarSalas(int numsala) {
+              
+        for (int j = 0; j < sala1.size() && numsala == 0; j++) {
+            asientos.get(j).setSelected(sala1.get(j));
+            asientos.get(j).setEnabled(!sala1.get(j));
+        }
+        for (int j = 0; j < sala2.size() && numsala == 1; j++) {
+            asientos.get(j).setSelected(sala2.get(j));
+            asientos.get(j).setEnabled(!sala2.get(j));
+        }
+        for (int j = 0; j < sala3.size() && numsala == 2; j++) {
+            asientos.get(j).setSelected(sala3.get(j));
+            asientos.get(j).setEnabled(!sala3.get(j));
+        }
+        for (int j = 0; j < sala4.size() && numsala == 3; j++) {
+            asientos.get(j).setSelected(sala4.get(j));
+            asientos.get(j).setEnabled(!sala4.get(j));
+        }
+        for (int j = 0; j < sala5.size() && numsala == 4; j++) {
+            asientos.get(j).setSelected(sala5.get(j));
+            asientos.get(j).setEnabled(!sala5.get(j));
+        }
+
     }
 
     /**
@@ -42,7 +132,7 @@ public class Principal extends javax.swing.JFrame {
 
         jCheckBox6 = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         tf_cantidad = new javax.swing.JTextField();
@@ -85,6 +175,11 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel1.setText("Seleccione Sala:");
 
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -252,28 +347,27 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel2)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(tf_cantidad))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addGap(23, 23, 23)
+                            .addComponent(tf_total, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel2)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tf_cantidad))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addGap(23, 23, 23)
-                                    .addComponent(tf_total, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(jButton1)))))
+                        .addGap(24, 24, 24)
+                        .addComponent(jButton1)))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -319,7 +413,11 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+
+        actualizarSalas(jComboBox1.getSelectedIndex());
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox cb0;
@@ -363,25 +461,4 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_total;
     // End of variables declaration//GEN-END:variables
 
-
-    void cargarSalas(){
-        //String butacas = cliente.CargarButacas();
-        //System.out.println(butacas);
-        /*String []salas = butacas.split("#");
-        String []butaca;
-        for(int i=0; i<salas.length;i++){
-            butaca = salas[i].split(":");
-            //jComboBox1.addItem(butaca[0]);
-            
-            for(int j=0; j < butaca.length;j++){
-                
-               // jTable1.getModel().setValueAt(false,(int)j/4,(int)j%4);
-            }
-        }
-        */
-        cb1.setSelected(true);
-        cb1.setEnabled(false);
-    }
-
 }
-

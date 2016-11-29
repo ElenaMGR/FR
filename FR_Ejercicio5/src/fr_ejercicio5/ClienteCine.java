@@ -114,7 +114,7 @@ public class ClienteCine {
     
     public String CargarButacas() {
         BufferedReader inReader;
-        
+        textoRecibido= "G";
         try {
             inReader = new BufferedReader(new InputStreamReader(socketServicio.getInputStream()));
             textoRecibido = inReader.readLine();  
@@ -122,7 +122,7 @@ public class ClienteCine {
         } catch (IOException ex) {
             System.err.println("Error: error al cargar las butacas");
         }
-        
+        System.out.println("CB "+textoRecibido);
         return textoRecibido;
     }
 
