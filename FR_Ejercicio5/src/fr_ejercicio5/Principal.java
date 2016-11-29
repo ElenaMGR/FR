@@ -12,13 +12,27 @@ package fr_ejercicio5;
 public class Principal extends javax.swing.JFrame {
 
     private int cant;
+    private ClienteCine cliente;
 
     /**
      * Creates new form Principal
      */
-    public Principal() {
+    public Principal(ClienteCine cliente) {
+        cliente=cliente;
         cant = 0;
         initComponents();
+        
+        String butacas = cliente.CargarButacas();
+        String []salas = butacas.split("#");
+        String []butaca;
+        for(int i=0; i<salas.length;i++){
+            butaca = salas[i].split(":");
+            for(int j=0; j < butaca.length;j++){
+                //jTable1.getModel().setValueAt(false,(int)j/4,(int)j%4);
+            }
+        }
+        jTable1.getModel().setValueAt(true,0,0);
+        
     }
 
     /**
@@ -31,7 +45,7 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
@@ -46,7 +60,7 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel1.setText("Seleccione Sala:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sala 1 - Película 1", "Sala 2 - Película 1", "Sala 3 - Película 2", "Sala 4 - Película 3", "Sala 5 - Película 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sala 1 - Película 1", "Sala 2 - Película 1", "Sala 3 - Película 2", "Sala 4 - Película 3", "Sala 5 - Película 4" }));
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -56,6 +70,7 @@ public class Principal extends javax.swing.JFrame {
                 { new Boolean(false),  new Boolean(false), null, null},
                 {null, null, null, null},
                 {null,  new Boolean(false),  new Boolean(false), null},
+                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {

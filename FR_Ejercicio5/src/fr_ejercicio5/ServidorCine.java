@@ -38,6 +38,8 @@ public class ServidorCine {
         String textoRecibido = "";
         // Abrimos el socket en modo pasivo, escuchando el en puerto indicado por "port"        
         ServerSocket socketServidor = null;
+        PrintWriter outPrinter;
+        BufferedReader inReader;
         try {
             socketServidor = new ServerSocket(port);
         } catch (IOException e) {
@@ -58,7 +60,7 @@ public class ServidorCine {
             }
 
             try {
-                BufferedReader inReader = new BufferedReader(new InputStreamReader(socketServicio.getInputStream()));
+                inReader = new BufferedReader(new InputStreamReader(socketServicio.getInputStream()));
                 textoRecibido = inReader.readLine();
             } catch (IOException ex) {
                 Logger.getLogger(ServidorCine.class.getName()).log(Level.SEVERE, null, ex);
@@ -66,17 +68,16 @@ public class ServidorCine {
             System.out.println(textoRecibido);
             if (!textoRecibido.equals("BYE")) {
                 if (textoRecibido.equals("REG")) {
-                    
-                    PrintWriter outPrinter;
+
                     try {
                         outPrinter = new PrintWriter(socketServicio.getOutputStream(), true);
                         outPrinter.println("OKREG");
                     } catch (IOException ex) {
                         Logger.getLogger(ServidorCine.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    
+
                     try {
-                        BufferedReader inReader = new BufferedReader(new InputStreamReader(socketServicio.getInputStream()));
+                        inReader = new BufferedReader(new InputStreamReader(socketServicio.getInputStream()));
                         textoRecibido = inReader.readLine();
                     } catch (IOException ex) {
                         Logger.getLogger(ServidorCine.class.getName()).log(Level.SEVERE, null, ex);
@@ -92,7 +93,6 @@ public class ServidorCine {
                     textoRecibido = "ERROR";
                 }
 
-                PrintWriter outPrinter;
                 try {
                     outPrinter = new PrintWriter(socketServicio.getOutputStream(), true);
                     outPrinter.println(textoRecibido);
@@ -101,6 +101,21 @@ public class ServidorCine {
                 }
 
                 if (loginSuccessful) {
+                    textoRecibido = getButacasOcupadas();
+                    try {
+                        outPrinter = new PrintWriter(socketServicio.getOutputStream(), true);
+                        outPrinter.println(textoRecibido);
+                    } catch (IOException ex) {
+                        Logger.getLogger(ServidorCine.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    try {
+                        inReader = new BufferedReader(new InputStreamReader(socketServicio.getInputStream()));
+                        textoRecibido = inReader.readLine();
+                    } catch (IOException ex) {
+                        Logger.getLogger(ServidorCine.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    System.out.println(textoRecibido);
+                    actualizarSala(textoRecibido);
 
                 }
             }
@@ -127,6 +142,9 @@ public class ServidorCine {
         salas.add(new SalaCine(3, "La llegada"));
         salas.add(new SalaCine(4, "Un monstruo viene a verme"));
         salas.add(new SalaCine(5, "Doctor Strange"));
+        salas.get(1).setButaca(3, true);
+        salas.get(1).setButaca(4, true);
+        salas.get(2).setButaca(3, true);
     }
 
     /**
@@ -148,8 +166,28 @@ public class ServidorCine {
         return encontrado;
     }
 
-    private static void ProcesarLogin() {
+    private static void actualizarSala(String info) {
+        String[] texto = info.split("#");
+        int n = Integer.valueOf(texto[0]);
+        for (int i = 1; i < texto.length; i++) {
+            salas.get(n).setButaca(Integer.valueOf(texto[i]), false);
+        }
 
+    }
+
+    private static String getButacasOcupadas() {
+        String texto = "";
+        for (int i = 0; i < salas.size(); i++) {
+            texto += salas.get(i).getNumero() + ":";
+            for (int j = 0; j < 20; j++) {
+                if (salas.get(i).getButaca(j)) {
+                    texto += j + ":";
+                }
+            }
+            texto+="#";
+        }
+
+        return texto;
     }
 
 }

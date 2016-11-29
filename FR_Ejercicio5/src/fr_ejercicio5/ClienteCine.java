@@ -111,5 +111,18 @@ public class ClienteCine {
         
         return textoRecibido.equals("OKREG");
     }
+    
+    public String CargarButacas() {
+        BufferedReader inReader;
+        
+        try {
+            inReader = new BufferedReader(new InputStreamReader(socketServicio.getInputStream()));
+            textoRecibido = inReader.readLine();            
+        } catch (IOException ex) {
+            System.err.println("Error: error al enviar el registro al servidor");
+        }
+        
+        return textoRecibido;
+    }
 
 }

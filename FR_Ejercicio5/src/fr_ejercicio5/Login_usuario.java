@@ -144,7 +144,7 @@ public class Login_usuario extends javax.swing.JFrame {
         boolean correcto = cliente.login(tfUser.getText(), tfPass.getText());
         if (correcto){
             lMensaje.setText("");
-            principal = new Principal();
+            principal = new Principal(cliente);
             principal.setVisible(true);
             this.dispose();
         }else{
