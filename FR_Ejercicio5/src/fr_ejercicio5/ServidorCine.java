@@ -116,7 +116,7 @@ public class ServidorCine {
                         Logger.getLogger(ServidorCine.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     System.out.println(textoRecibido);
-                   // actualizarSala(textoRecibido);
+                    actualizarSala(textoRecibido);
 
                 }
             }

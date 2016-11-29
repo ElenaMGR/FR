@@ -379,6 +379,7 @@ public class Principal extends javax.swing.JFrame {
             }
         }
         */
+        cb1.setSelected(true);
         cb1.setEnabled(false);
     }
 
