@@ -109,6 +109,7 @@ public class ServidorCine {
                         System.err.println("Error: en el servidor al mandar la información del cine");
                     }
                     System.out.println(textoRecibido);
+                    
                     try {
                         inReader = new BufferedReader(new InputStreamReader(socketServicio.getInputStream()));
                         textoRecibido = inReader.readLine();
@@ -116,7 +117,8 @@ public class ServidorCine {
                         System.err.println("Error: en el servidor al recibir la compra de butacas");
                     }
                     System.out.println(textoRecibido);
-                    actualizarSala(textoRecibido);
+                    if (!textoRecibido.equals("BYE")) 
+                        actualizarSala(textoRecibido);
 
                 }
             }

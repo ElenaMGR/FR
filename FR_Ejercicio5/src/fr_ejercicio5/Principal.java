@@ -7,6 +7,7 @@ package fr_ejercicio5;
 
 import java.util.ArrayList;
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -131,6 +132,10 @@ public class Principal extends javax.swing.JFrame {
         tf_cantidad.setText(cant + "");
         tf_total.setText(cant * 6 + "");
     }
+    
+    private void mandarCompraButacas (){
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -183,6 +188,11 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Compra Entradas!");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setText("Seleccione Sala:");
 
@@ -218,6 +228,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         jButton1.setText("Comprar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Salas"));
 
@@ -631,6 +646,18 @@ public class Principal extends javax.swing.JFrame {
     private void cb19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb19MouseClicked
        actualizarCantidad(19);
     }//GEN-LAST:event_cb19MouseClicked
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        cliente.desconectar();
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        mandarCompraButacas();
+        JOptionPane.showMessageDialog(this,"Su compra se ha realizado con éxito.");
+        cliente.desconectar();
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
